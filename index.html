@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BONNOU 3月月次総会 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&display=swap');
+
+  :root {
+    --cyan: #00E5FF;
+    --orange: #E8913A;
+    --dark-bg: #0A0A14;
+    --card-bg: rgba(255,255,255,0.04);
+    --card-border: rgba(255,255,255,0.08);
+    --glass-bg: rgba(255,255,255,0.06);
+    --glass-border: rgba(255,255,255,0.12);
+    --text-primary: #FFFFFF;
+    --text-secondary: rgba(255,255,255,0.6);
+    --text-dim: rgba(255,255,255,0.35);
+    --green: #34D399;
+    --red: #F87171;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans JP', -apple-system, sans-serif;
+    background: #000;
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .slide {
+    width: 960px;
+    height: 540px;
+    margin: 20px auto;
+    background: var(--dark-bg);
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+  }
+
+  /* ===== Noise texture overlay ===== */
+  .slide::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .slide > * { position: relative; z-index: 2; }
+
+  /* ===== Slide 1: Cover ===== */
+  .slide-cover {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--dark-bg);
+  }
+  .slide-cover::after {
+    content: '';
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(0,229,255,0.08) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+  .cover-line {
+    position: absolute;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0,229,255,0.2), transparent);
+    width: 100%;
+    z-index: 1;
+  }
+  .cover-line-top { top: 120px; }
+  .cover-line-bottom { bottom: 120px; }
+  .slide-cover .logo {
+    font-size: 80px;
+    font-weight: 900;
+    letter-spacing: 16px;
+    color: var(--text-primary);
+    font-style: italic;
+    z-index: 2;
+    text-shadow: 0 0 80px rgba(0,229,255,0.15);
+  }
+  .slide-cover .divider {
+    width: 60px;
+    height: 2px;
+    background: var(--cyan);
+    margin: 20px 0;
+    z-index: 2;
+  }
+  .slide-cover .subtitle {
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--text-primary);
+    letter-spacing: 8px;
+    z-index: 2;
+  }
+  .slide-cover .date {
+    font-size: 14px;
+    color: var(--text-dim);
+    margin-top: 24px;
+    letter-spacing: 4px;
+    z-index: 2;
+  }
+
+  /* ===== Agenda Slides ===== */
+  .slide-agenda {
+    display: flex;
+    align-items: center;
+    padding: 0 100px;
+    background: var(--dark-bg);
+  }
+  .slide-agenda::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(135deg, transparent, rgba(0,229,255,0.03));
+    z-index: 1;
+  }
+  .slide-agenda .label {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--cyan);
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    margin-right: 60px;
+  }
+  .slide-agenda ol {
+    list-style: none;
+    counter-reset: agenda;
+  }
+  .slide-agenda ol li {
+    counter-increment: agenda;
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--text-dim);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: all 0.3s;
+  }
+  .slide-agenda ol li::before {
+    content: "0" counter(agenda);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-dim);
+    min-width: 28px;
+    letter-spacing: 1px;
+  }
+  .slide-agenda ol li.highlight {
+    color: var(--text-primary);
+    font-size: 30px;
+  }
+  .slide-agenda ol li.highlight::before {
+    color: var(--cyan);
+  }
+  .slide-agenda ol li.highlight::after {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 2px;
+    background: var(--cyan);
+    margin-left: 8px;
+  }
+
+  /* ===== Goals Slide ===== */
+  .slide-goals {
+    background: var(--dark-bg);
+    padding: 48px 60px;
+    display: flex;
+    flex-direction: column;
+  }
+  .slide-goals::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(0deg, rgba(0,229,255,0.04), transparent);
+    z-index: 1;
+  }
+  .slide-goals .header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .slide-goals .header .tag {
+    font-size: 11px;
+    color: var(--cyan);
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+  .slide-goals .header h2 {
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--text-primary);
+  }
+  .slide-goals .mission-badge {
+    position: absolute;
+    top: 48px;
+    right: 60px;
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 6px 18px;
+    font-size: 11px;
+    color: var(--text-dim);
+    font-weight: 700;
+    letter-spacing: 2px;
+    backdrop-filter: blur(8px);
+    background: var(--glass-bg);
+  }
+  .goals-container {
+    display: flex;
+    gap: 24px;
+    flex: 1;
+  }
+  .goal-card {
+    flex: 1;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+  }
+  .goal-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    background: linear-gradient(180deg, rgba(0,229,255,0.05) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .goal-card .card-tag {
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    letter-spacing: 2px;
+  }
+  .goal-card .card-tag.qualitative { color: var(--orange); }
+  .goal-card .card-tag.quantitative { color: var(--cyan); }
+  .goal-card .main-text {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+  }
+  .goal-card .big-number {
+    font-size: 64px;
+    font-weight: 900;
+    color: var(--text-primary);
+    line-height: 1.1;
+  }
+  .goal-card .big-number span {
+    font-size: 24px;
+  }
+  .achieved-badge {
+    background: var(--green);
+    color: #000;
+    padding: 6px 20px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 900;
+    margin-top: 12px;
+    letter-spacing: 1px;
+  }
+  .goal-card .forecast {
+    margin-top: 20px;
+    padding: 12px 20px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .goal-card .forecast span:last-child {
+    color: var(--cyan);
+    font-weight: 900;
+    font-size: 15px;
+  }
+  .goal-card .trophy-icon {
+    font-size: 36px;
+    margin-bottom: 8px;
+  }
+
+  /* ===== Results Table ===== */
+  .slide-results {
+    padding: 44px 56px;
+    background: var(--dark-bg);
+  }
+  .slide-results h2 {
+    font-size: 26px;
+    font-weight: 900;
+    margin-bottom: 28px;
+    color: var(--text-primary);
+  }
+  .slide-results h2 span {
+    color: var(--cyan);
+  }
+  .results-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  .result-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 22px 16px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .result-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+    opacity: 0.5;
+  }
+  .result-card .result-label {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .result-card .result-value {
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--text-primary);
+  }
+  .result-card .result-value.accent { color: var(--orange); }
+  .result-card .result-sub {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-top: 6px;
+  }
+  .progress-bar-container {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 14px;
+    padding: 18px 24px;
+    backdrop-filter: blur(12px);
+  }
+  .progress-bar-container .progress-label {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-secondary);
+  }
+  .progress-bar-container .progress-label .pct {
+    color: var(--cyan);
+    font-size: 18px;
+    font-weight: 900;
+  }
+  .progress-bar {
+    height: 12px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+  }
+  .progress-bar .done {
+    background: linear-gradient(90deg, var(--cyan), #00B8D4);
+    border-radius: 6px 0 0 6px;
+  }
+  .progress-bar .in-progress {
+    background: var(--orange);
+  }
+  .progress-bar .not-started {
+    background: transparent;
+  }
+  .progress-legend {
+    display: flex;
+    gap: 24px;
+    margin-top: 10px;
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+  .progress-legend span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .progress-legend span::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+  .progress-legend .leg-done::before { background: var(--cyan); }
+  .progress-legend .leg-wip::before { background: var(--orange); }
+  .progress-legend .leg-todo::before { background: rgba(255,255,255,0.15); }
+
+  /* ===== Progress Slide ===== */
+  .slide-progress {
+    padding: 56px 80px;
+    background: var(--dark-bg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .slide-progress::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100%;
+    background: linear-gradient(270deg, rgba(232,145,58,0.06), transparent);
+    z-index: 1;
+  }
+  .slide-progress .tag {
+    font-size: 11px;
+    color: var(--orange);
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .slide-progress h2 {
+    font-size: 30px;
+    font-weight: 900;
+    margin-bottom: 36px;
+    color: var(--text-primary);
+  }
+  .slide-progress ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .slide-progress ul li {
+    font-size: 20px;
+    font-weight: 700;
+    padding: 14px 24px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .slide-progress ul li .emoji {
+    font-size: 22px;
+  }
+  .slide-progress ul li .check {
+    color: var(--green);
+    font-size: 14px;
+    font-weight: 900;
+    flex-shrink: 0;
+  }
+
+  /* ===== 4月目標 Dark Slide ===== */
+  .slide-april-goal {
+    background: var(--dark-bg);
+    color: #fff;
+    padding: 44px 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .slide-april-goal::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 30%, rgba(0,229,255,0.1) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 50% at 80% 80%, rgba(232,145,58,0.06) 0%, transparent 70%);
+    z-index: 1;
+  }
+  .slide-april-goal .month-tag {
+    font-size: 11px;
+    color: var(--cyan);
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .slide-april-goal h2 {
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--text-primary);
+  }
+  .slide-april-goal .sub {
+    font-size: 15px;
+    color: var(--text-dim);
+    margin-top: 2px;
+  }
+  .slide-april-goal .big-target {
+    font-size: 110px;
+    font-weight: 900;
+    color: var(--cyan);
+    line-height: 1;
+    margin: 8px 0 2px;
+    text-shadow: 0 0 60px rgba(0,229,255,0.3);
+  }
+  .slide-april-goal .big-target span {
+    font-size: 28px;
+    color: var(--text-dim);
+    font-weight: 700;
+  }
+  .slide-april-goal .vision {
+    font-size: 13px;
+    color: var(--cyan);
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+    opacity: 0.8;
+  }
+  .kpi-row {
+    display: flex;
+    gap: 14px;
+  }
+  .kpi-card {
+    flex: 1;
+    background: rgba(255,255,255,0.04);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 22px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .kpi-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 2px;
+    background: var(--cyan);
+    border-radius: 0 0 4px 4px;
+  }
+  .kpi-card .kpi-label {
+    font-size: 11px;
+    color: var(--cyan);
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+  }
+  .kpi-card .kpi-value {
+    font-size: 30px;
+    font-weight: 900;
+    color: var(--text-primary);
+  }
+  .kpi-card .kpi-desc {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-top: 6px;
+    line-height: 1.6;
+  }
+
+  /* ===== Case Table Slide ===== */
+  .slide-case-table {
+    padding: 44px 56px;
+    background: var(--dark-bg);
+  }
+  .slide-case-table .tag {
+    font-size: 11px;
+    color: var(--cyan);
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .slide-case-table h2 {
+    font-size: 26px;
+    font-weight: 900;
+    margin-bottom: 24px;
+    color: var(--text-primary);
+  }
+  .case-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 14px;
+  }
+  .case-table thead th {
+    background: rgba(0,229,255,0.08);
+    color: var(--cyan);
+    padding: 12px 20px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--glass-border);
+  }
+  .case-table thead th:first-child { border-radius: 10px 0 0 0; }
+  .case-table thead th:last-child { border-radius: 0 10px 0 0; }
+  .case-table tbody td {
+    padding: 14px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    text-align: center;
+    font-weight: 700;
+    color: var(--text-secondary);
+  }
+  .case-table tbody tr:hover {
+    background: rgba(255,255,255,0.02);
+  }
+  .case-table .case-name {
+    text-align: left;
+    font-weight: 900;
+    color: var(--text-primary);
+  }
+  .case-table .tbd {
+    color: var(--text-dim);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 12px;
+  }
+  .case-table .new-row {
+    background: rgba(232,145,58,0.06) !important;
+  }
+  .case-table .new-row .case-name {
+    color: var(--orange);
+  }
+  .case-table tfoot td {
+    padding: 14px 20px;
+    font-weight: 900;
+    border-top: 1px solid var(--glass-border);
+    text-align: center;
+    color: var(--text-primary);
+  }
+
+  /* ===== New Member Slide ===== */
+  .slide-member {
+    padding: 56px 72px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: var(--dark-bg);
+  }
+  .slide-member::after {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(232,145,58,0.08) 0%, transparent 70%);
+    z-index: 1;
+  }
+  .slide-member .welcome-tag {
+    font-size: 12px;
+    color: var(--orange);
+    font-weight: 700;
+    letter-spacing: 4px;
+    margin-bottom: 6px;
+  }
+  .slide-member h2 {
+    font-size: 34px;
+    font-weight: 900;
+    margin-bottom: 28px;
+    color: var(--text-primary);
+  }
+  .member-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 36px 40px;
+    display: flex;
+    align-items: center;
+    gap: 36px;
+  }
+  .member-icon {
+    width: 110px;
+    height: 110px;
+    background: linear-gradient(135deg, var(--cyan), #0091EA);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 44px;
+    color: #fff;
+    font-weight: 900;
+    flex-shrink: 0;
+    box-shadow: 0 0 40px rgba(0,229,255,0.2);
+  }
+  .member-info h3 {
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+  .member-info .role {
+    font-size: 13px;
+    color: var(--cyan);
+    font-weight: 700;
+    margin-bottom: 14px;
+    letter-spacing: 1px;
+  }
+  .member-info p {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.9;
+  }
+  .member-info p strong {
+    color: var(--orange);
+  }
+
+  /* ===== Placeholder Slide ===== */
+  .slide-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: var(--dark-bg);
+  }
+  .slide-placeholder::after {
+    content: '';
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(0,229,255,0.04) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+  .slide-placeholder .ph-title {
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--text-dim);
+    letter-spacing: 4px;
+  }
+  .slide-placeholder .placeholder-note {
+    font-size: 14px;
+    color: var(--text-dim);
+    margin-top: 12px;
+    letter-spacing: 2px;
+  }
+  .slide-placeholder .ph-line {
+    width: 40px;
+    height: 2px;
+    background: var(--text-dim);
+    margin-top: 20px;
+  }
+
+  /* ===== Slide number ===== */
+  .slide-num {
+    position: absolute;
+    bottom: 20px;
+    right: 28px;
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+    z-index: 3;
+  }
+
+  /* ===== Print ===== */
+  @media print {
+    body { background: #000; }
+    .slide {
+      box-shadow: none;
+      margin: 0;
+      page-break-after: always;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Slide 1: 表紙 -->
+<div class="slide slide-cover">
+  <div class="cover-line cover-line-top"></div>
+  <div class="cover-line cover-line-bottom"></div>
+  <div class="logo">BONNOU</div>
+  <div class="divider"></div>
+  <div class="subtitle">3月月次総会</div>
+  <div class="date">2026 / 3 / 31</div>
+  <div class="slide-num">01 / 13</div>
+</div>
+
+<!-- Slide 2: アジェンダ（全体） -->
+<div class="slide slide-agenda">
+  <div class="label">AGENDA</div>
+  <ol>
+    <li>全体（振り返り）</li>
+    <li>来月の見込み・動き</li>
+    <li>新メンバー紹介</li>
+  </ol>
+  <div class="slide-num">02 / 13</div>
+</div>
+
+<!-- Slide 3: アジェンダ（セクション1ハイライト） -->
+<div class="slide slide-agenda">
+  <div class="label">AGENDA</div>
+  <ol>
+    <li class="highlight">全体（3月振り返り）</li>
+    <li>来月の見込み・動き</li>
+    <li>新メンバー紹介</li>
+  </ol>
+  <div class="slide-num">03 / 13</div>
+</div>
+
+<!-- Slide 4: 3月の目標 -->
+<div class="slide slide-goals">
+  <div class="header">
+    <div class="tag">MARCH GOALS</div>
+    <h2>3月の目標</h2>
+  </div>
+  <div class="mission-badge">&#9678; MISSION</div>
+  <div class="goals-container">
+    <div class="goal-card">
+      <div class="card-tag quantitative">&#128200; 定量目標</div>
+      <div class="trophy-icon">&#127942;</div>
+      <div class="main-text">必達ライン</div>
+      <div class="big-number">黒字化</div>
+      <div class="achieved-badge">&#10003; 達成</div>
+      <div class="forecast">
+        <span>Current Forecast</span>
+        <span>¥8,868,041</span>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">04 / 13</div>
+</div>
+
+<!-- Slide 5: 3月振り返り・結果 -->
+<div class="slide slide-results">
+  <h2>3月振り返り・<span>結果</span></h2>
+  <div class="results-grid">
+    <div class="result-card">
+      <div class="result-label">請求売上</div>
+      <div class="result-value">¥886万</div>
+      <div class="result-sub">制作費¥664万 + 手数料¥222万</div>
+    </div>
+    <div class="result-card">
+      <div class="result-label">受注売上</div>
+      <div class="result-value accent">¥1,774万</div>
+      <div class="result-sub">87件 受注</div>
+    </div>
+    <div class="result-card">
+      <div class="result-label">運用手数料</div>
+      <div class="result-value">¥222万</div>
+      <div class="result-sub">8社 稼働中</div>
+    </div>
+    <div class="result-card">
+      <div class="result-label">広告消化額</div>
+      <div class="result-value">¥1,927万</div>
+      <div class="result-sub">グロス ¥2,149万</div>
+    </div>
+  </div>
+  <div class="progress-bar-container">
+    <div class="progress-label">
+      <span>&#128736; 納品進捗</span>
+      <span class="pct">55%</span>
+    </div>
+    <div class="progress-bar">
+      <div class="done" style="width: 55%;"></div>
+      <div class="in-progress" style="width: 9%;"></div>
+      <div class="not-started" style="width: 36%;"></div>
+    </div>
+    <div class="progress-legend">
+      <span class="leg-done">納品完了 48件</span>
+      <span class="leg-wip">制作中 8件</span>
+      <span class="leg-todo">未着手 31件</span>
+    </div>
+  </div>
+  <div class="slide-num">05 / 13</div>
+</div>
+
+<!-- Slide 6: 3月前進したこと -->
+<div class="slide slide-progress">
+  <div class="tag">ACHIEVEMENTS</div>
+  <h2>3月前進したこと(事業面)</h2>
+  <ul>
+    <li><span class="check">&#10003;</span>受注売上2,000万越え（ギネス更新）<span class="emoji">&#127881;</span></li>
+    <li><span class="check">&#10003;</span>ローコスト単体470万売上（制作+運用）<span class="emoji">&#127881;</span></li>
+    <li><span class="check">&#10003;</span>ブリーチ4案件に拡大<span class="emoji">&#127881;</span></li>
+    <li><span class="check">&#10003;</span>新規プラン5案件移行完了<span class="emoji">&#127881;</span></li>
+    <li><span class="check">&#10003;</span>100万消化CR 2本<span class="emoji">&#127881;</span></li>
+  </ul>
+  <div class="slide-num">06 / 13</div>
+</div>
+
+<!-- Slide 7: アジェンダ（セクション2ハイライト） -->
+<div class="slide slide-agenda">
+  <div class="label">AGENDA</div>
+  <ol>
+    <li>全体（3月振り返り）</li>
+    <li class="highlight">4月の見込み・動き</li>
+    <li>新メンバー紹介</li>
+  </ol>
+  <div class="slide-num">07 / 13</div>
+</div>
+
+<!-- Slide 8: 4月の目標（ダーク） -->
+<div class="slide slide-april-goal">
+  <div class="month-tag">APRIL TARGET</div>
+  <h2>4月の目標</h2>
+  <div class="sub">新モデルで月商</div>
+  <div class="big-target">1,000<span>万円</span></div>
+  <div class="vision">VISION: BONNOUと個の戦力倍増 feat. AI で提供価値10x</div>
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <div class="kpi-label">KPI &#9312;</div>
+      <div class="kpi-value">8 案件</div>
+      <div class="kpi-desc">探査プラン受注</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">KPI &#9313;</div>
+      <div class="kpi-value">CR 5 本</div>
+      <div class="kpi-desc">100万消化クリエイティブ</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">KPI &#9314;</div>
+      <div class="kpi-value">20→40本</div>
+      <div class="kpi-desc">業務改善50% + 制作キャパ倍増<br>(4月末週達成)</div>
+    </div>
+  </div>
+  <div class="slide-num">08 / 13</div>
+</div>
+
+<!-- Slide 9: 4月 案件別見込み -->
+<div class="slide slide-case-table">
+  <div class="tag">FORECAST</div>
+  <h2>4月 案件別見込み</h2>
+  <table class="case-table">
+    <thead>
+      <tr>
+        <th style="width:30%;">案件</th>
+        <th style="width:25%;">制作費</th>
+        <th style="width:25%;">運用</th>
+        <th style="width:20%;">備考</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="case-name">ローコスト</td>
+        <td class="tbd">未定</td>
+        <td class="tbd">未定</td>
+        <td class="tbd">後ほど記載</td>
+      </tr>
+      <tr>
+        <td class="case-name">ミラネス</td>
+        <td class="tbd">未定</td>
+        <td class="tbd">未定</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="case-name">イザナミ</td>
+        <td>¥1,200,000</td>
+        <td>—</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="case-name">ミニッシュ</td>
+        <td>¥1,200,000</td>
+        <td>—</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="case-name">.AI</td>
+        <td>¥1,200,000</td>
+        <td>—</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="case-name">REDEN</td>
+        <td>¥1,000,000</td>
+        <td>10%</td>
+        <td></td>
+      </tr>
+      <tr class="new-row">
+        <td class="case-name">+ 新規案件</td>
+        <td class="tbd">—</td>
+        <td class="tbd">—</td>
+        <td style="font-size:12px; color:#E8913A;">開拓中</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="slide-num">09 / 13</div>
+</div>
+
+<!-- Slide 10: アジェンダ（セクション3ハイライト） -->
+<div class="slide slide-agenda">
+  <div class="label">AGENDA</div>
+  <ol>
+    <li>全体（3月振り返り）</li>
+    <li>4月の見込み・動き</li>
+    <li class="highlight">新メンバー紹介</li>
+  </ol>
+  <div class="slide-num">10 / 13</div>
+</div>
+
+<!-- Slide 11: 新メンバー紹介 -->
+<div class="slide slide-member">
+  <div class="welcome-tag">&#127881; NEW MEMBER</div>
+  <h2>新メンバー紹介</h2>
+  <div class="member-card">
+    <div class="member-icon" style="overflow:hidden;"><img src="masato-icon.png" alt="まさと" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
+    <div class="member-info">
+      <h3>まさと</h3>
+      <div class="role">CD（クリエイティブディレクター）</div>
+      <p>
+        ついに！弊社にCDが参戦！<br>
+        これまでの動画クオリティをぶち上げる<br>
+        元テレビディレクター、1人で10人分の元気、超元気な男の子！<br>
+        <strong>BONNOUが一気に陽に傾きます！！お楽しみに！</strong>
+      </p>
+    </div>
+  </div>
+  <div class="slide-num">11 / 13</div>
+</div>
+
+<!-- Slide 12: アジェンダ（最終） -->
+<div class="slide slide-agenda">
+  <div class="label">AGENDA</div>
+  <ol>
+    <li>全体（振り返り）</li>
+    <li>来月の見込み・動き</li>
+    <li>新メンバー紹介</li>
+  </ol>
+  <div class="slide-num">12 / 13</div>
+</div>
+
+<!-- Slide 13: 代表メッセージ（プレースホルダー） -->
+<div class="slide slide-placeholder">
+  <div class="ph-title">代表メッセージ</div>
+  <div class="placeholder-note">（後ほど追加）</div>
+  <div class="ph-line"></div>
+  <div class="slide-num">13 / 13</div>
+</div>
+
+</body>
+</html>
